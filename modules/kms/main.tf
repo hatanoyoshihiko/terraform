@@ -5,12 +5,15 @@ provider "aws" {
   region                   = local.region
 }
 
+data "aws_caller_identity" "current" {}
+
 resource "aws_kms_key" "kms_key" {
   #   deletion_window_in_days = 10
   description  = ""
   is_enabled   = true
   key_usage    = "ENCRYPT_DECRYPT"
   multi_region = false
+  policy = var.policy
 
   tags = {
     Name = var.kms_key_name
