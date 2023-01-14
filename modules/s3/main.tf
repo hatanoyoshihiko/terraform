@@ -7,17 +7,18 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 
-resource "aws_s3_bucket" "cloud_trail_bucket" {
-  bucket = "${local.s3_bucket_name_cloud_trail}-${local.account_id}"
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket        = var.s3_bucket_name
+  force_destroy = true
 
   tags = {
-    Name = "${local.s3_bucket_name_cloud_trail}-${local.account_id}"
+    Name = var.s3_bucket_name
     env  = local.env
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "cloud_trail_bucket" {
-  bucket = aws_s3_bucket.cloud_trail_bucket.id
+resource "aws_s3_bucket_server_side_encryption_configuration" "s3_bucket" {
+  bucket = aws_s3_bucket.s3_bucket.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -26,16 +27,16 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "cloud_trail_bucke
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "cloud_trail_bucket" {
-  bucket                  = aws_s3_bucket.cloud_trail_bucket.id
+resource "aws_s3_bucket_public_access_block" "s3_bucket" {
+  bucket                  = aws_s3_bucket.s3_bucket.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_lifecycle_configuration" "cloud_trail_bucket" {
-  bucket = aws_s3_bucket.cloud_trail_bucket.id
+resource "aws_s3_bucket_lifecycle_configuration" "s3_bucket" {
+  bucket = aws_s3_bucket.s3_bucket.id
   rule {
     id = "life_cycle_365days"
     expiration {
