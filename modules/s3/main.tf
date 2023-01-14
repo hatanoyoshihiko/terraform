@@ -41,9 +41,9 @@ resource "aws_s3_bucket_lifecycle_configuration" "cloud_trail_bucket" {
     expiration {
       days = local.lifecycle_rule_days
     }
-    noncurrent_version_expiration {
-      noncurrent_days = local.lifecycle_rule_days
-    }
+    # noncurrent_version_expiration {
+    #   noncurrent_days = local.lifecycle_rule_days
+    # }
     status = "Enabled"
   }
 }
