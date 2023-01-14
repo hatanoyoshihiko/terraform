@@ -12,12 +12,14 @@ AWS、Azure、GCP等のプラットフォームに対して、ネットワーク
 ## Install terraform for macOS
 
 - install tfenv and terraform
-`$ brew install tfenv`
+
+`$ brew install tfenv`  
 `$ tfenv install latest`
 
-- version list and change version
-`$ tfenv list`
-`$ tfenv use x.x.x`
+- show version list and specify a version
+
+`$ tfenv list`  
+`$ tfenv use 1.0.0`
 
 ## Configure AWS Credential
 事前にAWS CLIをインストールしておくこと。
@@ -28,7 +30,7 @@ AWS、Azure、GCP等のプラットフォームに対して、ネットワーク
 $ aws configure --profile default
 AWS Access Key ID [****************FJHQ]:xxxxxxxxx
 AWS Secret Access Key [****************8XVS]:yyyyyyyyyy
-Default region name [us-east-2]:us-east-2
+Default region name [us-east-2]:us-east-1
 Default output format [json]: json
 ```
 
@@ -38,7 +40,7 @@ Default output format [json]: json
 >aws configure --profile default
 AWS Access Key ID [****************FJHQ]:xxxxxxxxx
 AWS Secret Access Key [****************8XVS]:yyyyyyyyyy
-Default region name [us-east-2]:us-east-2
+Default region name [us-east-2]:us-east-1
 Default output format [json]: json
 ```
 
@@ -158,7 +160,14 @@ $ terraform destroy
 ---
 
 ## 変数の定義
-※まだ書いている途中
+
+- 命名規則 
+[システム名] - [環境] - [リソース名] - [用途] - [数字]
+[システム名] - [環境] - [リソース名] - [用途] - [何でも] - [数字]
+
+- 本番
+Asystem-prd-ec2-web-01
+
 
 - 実行時に指定
 ```
