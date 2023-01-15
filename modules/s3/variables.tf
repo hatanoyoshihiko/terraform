@@ -5,9 +5,10 @@ locals {
   region                   = "ap-northeast-1"
   account_id               = ""
   # s3_bucket_name             = ""
-  lifecycle_rule_days = 365
   env                 = ""
 }
 
 variable "s3_bucket_name" {}
+variable "lifecycle_rule_days" {}
+variable "life_cycle_rule_name" {}
 # variable "s3_bucket_name_id" {}

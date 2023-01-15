@@ -39,9 +39,9 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket" {
 resource "aws_s3_bucket_lifecycle_configuration" "s3_bucket" {
   bucket = aws_s3_bucket.s3_bucket.id
   rule {
-    id = "life_cycle_365days"
+    id = var.life_cycle_rule_name
     expiration {
-      days = local.lifecycle_rule_days
+      days = var.lifecycle_rule_days
     }
     # noncurrent_version_expiration {
     #   noncurrent_days = local.lifecycle_rule_days
