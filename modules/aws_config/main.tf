@@ -10,9 +10,9 @@ data "aws_caller_identity" "current" {}
 module "s3_bucket" {
   source = "../../modules/s3"
 
-  s3_bucket_name = "${local.s3_bucket_name}-${local.account_id}"
-  lifecycle_rule_days = local.lifecycle_rule_days
-  life_cycle_rule_name     = local.life_cycle_rule_name
+  s3_bucket_name       = "${local.s3_bucket_name}-${local.account_id}"
+  lifecycle_rule_days  = local.lifecycle_rule_days
+  life_cycle_rule_name = local.life_cycle_rule_name
 }
 
 resource "aws_s3_bucket_policy" "aws_confg" {
