@@ -7,24 +7,6 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 
-# resource "aws_kms_key" "kms_key" {
-#   #   deletion_window_in_days = 10
-#   description  = ""
-#   is_enabled   = true
-#   key_usage    = "ENCRYPT_DECRYPT"
-#   multi_region = false
-
-#   tags = {
-#     Name = local.key_name
-#     env  = local.env
-#   }
-# }
-
-# resource "aws_kms_alias" "kms_key_alias" {
-#   name          = "alias/${local.key_name}"
-#   target_key_id = aws_kms_key.kms_key.id
-# }
-
 module "kms" {
   source = "../kms/"
 
