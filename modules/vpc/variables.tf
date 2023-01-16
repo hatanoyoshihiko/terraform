@@ -8,6 +8,8 @@ locals {
   # Names
   vpc_name                     = "VPC01"
   ig_name                      = "IG01"
+  nat_gw_name_a                = "ng01"
+  nat_gw_name_c                = "ng02"
   subnet_public_name_a         = "public_subnet_a"
   subnet_public_name_c         = "public_subnet_c"
   subnet_protected_name_a      = "protected_subnet_a"
