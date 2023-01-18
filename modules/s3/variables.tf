@@ -5,7 +5,7 @@ locals {
   region                   = "ap-northeast-1"
   account_id               = ""
   # s3_bucket_name             = ""
-  env                 = ""
+  env = ""
 }
 
 variable "s3_bucket_name" {}

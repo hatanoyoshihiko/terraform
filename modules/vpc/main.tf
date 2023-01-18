@@ -34,10 +34,10 @@ resource "aws_internet_gateway" "ig" {
 ## Subnet for Public Network
 ### Subnet for public a
 resource "aws_subnet" "public_a" {
-  vpc_id                 = aws_vpc.vpc.id
-  cidr_block             = local.subnet_public_a_cidr
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = local.subnet_public_a_cidr
   map_public_ip_on_launch = true
-  availability_zone      = local.subnet_a_az
+  availability_zone       = local.subnet_a_az
 
   tags = {
     Name = local.subnet_public_name_a
@@ -46,10 +46,10 @@ resource "aws_subnet" "public_a" {
 
 ### Subnet for public c
 resource "aws_subnet" "public_c" {
-  vpc_id                 = aws_vpc.vpc.id
-  cidr_block             = local.subnet_public_c_cidr
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = local.subnet_public_c_cidr
   map_public_ip_on_launch = true
-  availability_zone      = local.subnet_c_az
+  availability_zone       = local.subnet_c_az
 
   tags = {
     Name = local.subnet_public_name_c
@@ -143,13 +143,13 @@ resource "aws_route_table" "private" {
 ## Associetion Route Table
 ### public a 
 resource "aws_route_table_association" "public_a" {
-  subnet_id = aws_subnet.public_a.id
+  subnet_id      = aws_subnet.public_a.id
   route_table_id = aws_route_table.public.id
 }
 
 ### public c
 resource "aws_route_table_association" "public_c" {
-  subnet_id = aws_subnet.public_c.id
+  subnet_id      = aws_subnet.public_c.id
   route_table_id = aws_route_table.public.id
 }
 
@@ -172,8 +172,8 @@ resource "aws_eip" "nat_gateway_a" {
     aws_internet_gateway.ig
   ]
   tags = {
-    Name = local.nat_gw_name_a 
-  }  
+    Name = local.nat_gw_name_a
+  }
 }
 
 resource "aws_eip" "nat_gateway_c" {
@@ -182,7 +182,7 @@ resource "aws_eip" "nat_gateway_c" {
     aws_internet_gateway.ig
   ]
   tags = {
-    Name = local.nat_gw_name_c 
+    Name = local.nat_gw_name_c
   }
 }
 

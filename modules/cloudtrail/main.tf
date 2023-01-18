@@ -11,7 +11,7 @@ module "kms" {
   source = "../kms/"
 
   kms_key_name = local.kms_key_name
-  policy = <<EOF
+  policy       = <<EOF
     {
         "Version": "2012-10-17",
         "Id": "Key policy created by CloudTrail",
@@ -21,8 +21,8 @@ module "kms" {
                 "Effect": "Allow",
                 "Principal": {
                     "AWS": [
-                        "arn:aws:iam::${local.account_id }:root",
-                        "arn:aws:iam::${local.account_id }:user/administrator"
+                        "arn:aws:iam::${local.account_id}:root",
+                        "arn:aws:iam::${local.account_id}:user/administrator"
                     ]
                 },
                 "Action": "kms:*",
@@ -38,10 +38,10 @@ module "kms" {
                 "Resource": "*",
                 "Condition": {
                     "StringEquals": {
-                        "AWS:SourceArn": "arn:aws:cloudtrail:${local.region}:${local.account_id }:trail/${local.trail_name}"
+                        "AWS:SourceArn": "arn:aws:cloudtrail:${local.region}:${local.account_id}:trail/${local.trail_name}"
                     },
                     "StringLike": {
-                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id }:trail/*"
+                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id}:trail/*"
                     }
                 }
             },
@@ -67,10 +67,10 @@ module "kms" {
                 "Resource": "*",
                 "Condition": {
                     "StringEquals": {
-                        "kms:CallerAccount": "${local.account_id }"
+                        "kms:CallerAccount": "${local.account_id}"
                     },
                     "StringLike": {
-                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id }:trail/*"
+                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id}:trail/*"
                     }
                 }
             },
@@ -84,7 +84,7 @@ module "kms" {
                 "Resource": "*",
                 "Condition": {
                     "StringEquals": {
-                        "kms:CallerAccount": "${local.account_id }",
+                        "kms:CallerAccount": "${local.account_id}",
                         "kms:ViaService": "ec2.${local.region}.amazonaws.com"
                     }
                 }
@@ -102,10 +102,10 @@ module "kms" {
                 "Resource": "*",
                 "Condition": {
                     "StringEquals": {
-                        "kms:CallerAccount": "${local.account_id }"
+                        "kms:CallerAccount": "${local.account_id}"
                     },
                     "StringLike": {
-                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id }:trail/*"
+                        "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:${local.account_id}:trail/*"
                     }
                 }
             }
@@ -117,8 +117,8 @@ module "kms" {
 module "s3_bucket" {
   source = "../../modules/s3"
 
-  s3_bucket_name = "${local.s3_bucket_name}-${local.account_id}"
-  lifecycle_rule_days = local.lifecycle_rule_days
+  s3_bucket_name       = "${local.s3_bucket_name}-${local.account_id}"
+  lifecycle_rule_days  = local.lifecycle_rule_days
   life_cycle_rule_name = local.life_cycle_rule_name
 }
 

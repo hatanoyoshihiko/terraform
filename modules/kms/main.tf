@@ -13,7 +13,7 @@ resource "aws_kms_key" "kms_key" {
   is_enabled   = true
   key_usage    = "ENCRYPT_DECRYPT"
   multi_region = false
-  policy = var.policy
+  policy       = var.policy
 
   tags = {
     Name = var.kms_key_name
