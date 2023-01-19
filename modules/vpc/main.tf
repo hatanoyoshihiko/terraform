@@ -6,6 +6,11 @@ provider "aws" {
   shared_credentials_files = local.shared_credentials_files
   profile                  = local.profile
   region                   = local.region
+  default_tags {
+    tags = {
+      env = local.env
+    }
+  }
 }
 
 data "aws_caller_identity" "current" {}
@@ -227,3 +232,53 @@ resource "aws_route" "protected_c" {
 
 ### Routing For Private Network
 # Noting to do, only initial route table.
+
+## Security Group
+
+module "http_sg" {
+  source                   = "../security_group"
+  name                     = "http_sg"
+  vpc_id                   = aws_vpc.vpc.id
+  ingress_from_port        = 80
+  ingress_to_port          = 80
+  ingress_protocol         = "tcp"
+  ingress_ipv4_cidr_blocks = ["0.0.0.0/0"]
+  ingress_ipv6_cidr_blocks = ["::/0"]
+  egress_from_port         = 0
+  egress_to_port           = 0
+  egress_protocol          = "-1"
+  egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
+  egress_ipv6_cidr_blocks  = ["::/0"]
+}
+
+module "https_sg" {
+  source                   = "../security_group"
+  name                     = "https_sg"
+  vpc_id                   = aws_vpc.vpc.id
+  ingress_from_port        = 443
+  ingress_to_port          = 443
+  ingress_protocol         = "tcp"
+  ingress_ipv4_cidr_blocks = ["0.0.0.0/0"]
+  ingress_ipv6_cidr_blocks = ["::/0"]
+  egress_from_port         = 0
+  egress_to_port           = 0
+  egress_protocol          = "-1"
+  egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
+  egress_ipv6_cidr_blocks  = ["::/0"]
+}
+
+module "mysql_sg" {
+  source                   = "../security_group"
+  name                     = "mysql_sg"
+  vpc_id                   = aws_vpc.vpc.id
+  ingress_from_port        = 3306
+  ingress_to_port          = 3306
+  ingress_protocol         = "tcp"
+  ingress_ipv4_cidr_blocks = [module.http_sg.security_group_id]
+  ingress_ipv6_cidr_blocks = ["::/0"]
+  egress_from_port         = 0
+  egress_to_port           = 0
+  egress_protocol          = "-1"
+  egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
+  egress_ipv6_cidr_blocks  = ["::/0"]
+}
