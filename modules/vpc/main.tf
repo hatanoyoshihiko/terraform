@@ -244,11 +244,13 @@ module "http_sg" {
   ingress_protocol         = "tcp"
   ingress_ipv4_cidr_blocks = ["0.0.0.0/0"]
   ingress_ipv6_cidr_blocks = ["::/0"]
+  ingress_security_groups  = null
   egress_from_port         = 0
   egress_to_port           = 0
   egress_protocol          = "-1"
   egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks  = ["::/0"]
+  egress_security_groups   = null
 }
 
 module "https_sg" {
@@ -260,11 +262,13 @@ module "https_sg" {
   ingress_protocol         = "tcp"
   ingress_ipv4_cidr_blocks = ["0.0.0.0/0"]
   ingress_ipv6_cidr_blocks = ["::/0"]
+  ingress_security_groups  = null
   egress_from_port         = 0
   egress_to_port           = 0
   egress_protocol          = "-1"
   egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks  = ["::/0"]
+  egress_security_groups   = null
 }
 
 module "mysql_sg" {
@@ -274,11 +278,13 @@ module "mysql_sg" {
   ingress_from_port        = 3306
   ingress_to_port          = 3306
   ingress_protocol         = "tcp"
-  ingress_ipv4_cidr_blocks = [module.http_sg.security_group_id]
+  ingress_ipv4_cidr_blocks = null
   ingress_ipv6_cidr_blocks = ["::/0"]
+  ingress_security_groups  = [module.http_sg.security_group_id]
   egress_from_port         = 0
   egress_to_port           = 0
   egress_protocol          = "-1"
   egress_ipv4_cidr_blocks  = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks  = ["::/0"]
+  egress_security_groups   = null
 }

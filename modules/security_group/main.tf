@@ -21,6 +21,7 @@ resource "aws_security_group" "default" {
     protocol         = var.ingress_protocol
     cidr_blocks      = var.ingress_ipv4_cidr_blocks
     ipv6_cidr_blocks = var.ingress_ipv6_cidr_blocks
+    security_groups  = var.ingress_security_groups
   }
 
   egress {
@@ -29,6 +30,7 @@ resource "aws_security_group" "default" {
     protocol         = var.egress_protocol
     cidr_blocks      = var.egress_ipv4_cidr_blocks
     ipv6_cidr_blocks = var.egress_ipv6_cidr_blocks
+    security_groups  = var.egress_security_groups
   }
 }
 # resource "aws_security_group_rule" "ingress" {
