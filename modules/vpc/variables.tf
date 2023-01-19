@@ -6,8 +6,8 @@ locals {
   account_id               = data.aws_caller_identity.current.account_id
 
   # Names
-  vpc_name                     = "VPC01"
-  ig_name                      = "IG01"
+  vpc_name                     = "vpc01"
+  ig_name                      = "ig01"
   nat_gw_name_a                = "ng01"
   nat_gw_name_c                = "ng02"
   subnet_public_name_a         = "public_subnet_a"
@@ -36,4 +36,6 @@ locals {
   route_table_protected   = "protected"
   route_table_private     = "private"
   env                     = "dev"
+
+  # Security Group
 }
