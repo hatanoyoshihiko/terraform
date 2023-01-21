@@ -1,4 +1,10 @@
 locals {
+  shared_config_files      = ["~/.aws/config"]
+  shared_credentials_files = ["~/.aws/credentials"]
+  profile                  = "default"
+  region                   = "ap-northeast-1"
+  env                      = "dev"
+
   vpc_name                     = "vpc01"
   ig_name                      = "ig01"
   nat_gw_name_a                = "ng01"
@@ -28,5 +34,4 @@ locals {
   route_table_public      = "puclic"
   route_table_protected   = "protected"
   route_table_private     = "private"
-  env                     = "dev"
 }
