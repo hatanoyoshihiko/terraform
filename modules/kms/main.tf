@@ -1,11 +1,4 @@
-provider "aws" {
-  shared_config_files      = local.shared_config_files
-  shared_credentials_files = local.shared_credentials_files
-  profile                  = local.profile
-  region                   = local.region
-}
-
-data "aws_caller_identity" "current" {}
+# Module KMS
 
 resource "aws_kms_key" "kms_key" {
   #   deletion_window_in_days = 10
@@ -17,7 +10,6 @@ resource "aws_kms_key" "kms_key" {
 
   tags = {
     Name = var.kms_key_name
-    env  = local.env
   }
 }
 
