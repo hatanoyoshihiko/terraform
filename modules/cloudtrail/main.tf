@@ -161,7 +161,7 @@ resource "aws_cloudtrail" "cloudtrail" {
   name                          = local.trail_name
   s3_bucket_name                = "${local.s3_bucket_name}-${local.account_id}"
   s3_key_prefix                 = ""
-  kms_key_id                    = module.kms.key_arn
+  kms_key_id                    = module.kms.arn
   include_global_service_events = true
   is_multi_region_trail         = true
   enable_log_file_validation    = true
