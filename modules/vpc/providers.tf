@@ -6,7 +6,7 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.50.0"
     }
-  }  
+  }
   # backend "s3" {
   #   bucket = null
   #   key    = null
