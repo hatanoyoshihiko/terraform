@@ -1,7 +1,4 @@
 locals {
-  shared_config_files      = ["~/.aws/config"]
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "default"
   region                   = "ap-northeast-1"
   trail_name               = "trails"
   s3_bucket_name           = "aws-cloudtrail-logs"

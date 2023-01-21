@@ -3,7 +3,6 @@ locals {
   shared_credentials_files = ["~/.aws/credentials"]
   profile                  = "default"
   region                   = "ap-northeast-1"
-  account_id               = data.aws_caller_identity.current.account_id
 
   # Names
   vpc_name                     = "vpc01"
@@ -36,6 +35,4 @@ locals {
   route_table_protected   = "protected"
   route_table_private     = "private"
   env                     = "dev"
-
-  # Security Group
 }
