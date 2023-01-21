@@ -1,20 +1,5 @@
 # Module VPC
 
-## Credential information
-provider "aws" {
-  shared_config_files      = local.shared_config_files
-  shared_credentials_files = local.shared_credentials_files
-  profile                  = local.profile
-  region                   = local.region
-  default_tags {
-    tags = {
-      env = local.env
-    }
-  }
-}
-
-data "aws_caller_identity" "current" {}
-
 ## VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = local.vpc_cidr
@@ -280,7 +265,7 @@ module "mysql_sg" {
   ingress_protocol         = "tcp"
   ingress_ipv4_cidr_blocks = null
   ingress_ipv6_cidr_blocks = ["::/0"]
-  ingress_security_groups  = [module.http_sg.security_group_id]
+  ingress_security_groups  = [module.http_sg.id]
   egress_from_port         = 0
   egress_to_port           = 0
   egress_protocol          = "-1"

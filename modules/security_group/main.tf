@@ -1,15 +1,5 @@
 # Module Security Group
 
-## Credential information
-provider "aws" {
-  shared_config_files      = local.shared_config_files
-  shared_credentials_files = local.shared_credentials_files
-  profile                  = local.profile
-  region                   = local.region
-}
-
-data "aws_caller_identity" "current" {}
-
 ## Security Group
 resource "aws_security_group" "default" {
   name   = var.name
@@ -33,6 +23,7 @@ resource "aws_security_group" "default" {
     security_groups  = var.egress_security_groups
   }
 }
+
 # resource "aws_security_group_rule" "ingress" {
 #   type              = "ingress"
 #   from_port         = var.port

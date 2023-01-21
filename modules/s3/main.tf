@@ -1,9 +1,4 @@
-provider "aws" {
-  shared_config_files      = local.shared_config_files
-  shared_credentials_files = local.shared_credentials_files
-  profile                  = local.profile
-  region                   = local.region
-}
+# S3 Module
 
 data "aws_caller_identity" "current" {}
 
