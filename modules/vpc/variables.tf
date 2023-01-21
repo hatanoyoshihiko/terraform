@@ -1,10 +1,4 @@
 locals {
-  shared_config_files      = ["~/.aws/config"]
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "default"
-  region                   = "ap-northeast-1"
-
-  # Names
   vpc_name                     = "vpc01"
   ig_name                      = "ig01"
   nat_gw_name_a                = "ng01"
